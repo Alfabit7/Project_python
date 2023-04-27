@@ -67,13 +67,22 @@ def EditNotion():
                 f'\n Заметки с ID {userID} в списке нет проверьте правильность ввода ID')
     else:
         print(
-            'Список заметок пуст редактировать нечего')
+            '\n Список заметок пуст, редактировать нечего')
 
 # функция удаления заметок
 
 
 def DeleteNotion():
-    userKeys = input(
-        '\nВведите ID заметки, которую хотите удалить: ')
-    myNote.pop(userKeys)
-    print('\n Заметка удалена')
+    if len(myNote) > 0:
+
+        userID = input(
+            '\nВведите ID заметки, которую хотите удалить: ')
+        if userID in myNote:
+            myNote.pop(userID)
+            print(f'\n Заметка с  ID {userID} удалена ')
+        else:
+            print(
+                f'\n Заметки с ID {userID} в списке нет проверьте правильность ввода ID')
+    else:
+        print(
+            '\n Список заметок пуст, удалять нечего')

@@ -5,7 +5,7 @@ def ShowMenu():
     print('\n 1- Добавить заметку \n 2- Показать все заметки\n 3- Редактировать заметку\n 4- Удалить заметку\n 5- Выход из меню\n')
     # Проверяем, что пользователь ввел число из диапазона меню от1 до 5
     while True:
-        menu = input('\nВведите пункт меню ')
+        menu = input('\nВведите пункт меню: ')
         try:
             menu = int(menu)
         except ValueError:
@@ -25,5 +25,5 @@ def ShowMenu():
     elif menu == 4:
         notion.DeleteNotion()
     elif menu == 5:
-        print('exit to menu')
+        print('\nexit from programm\n')
     return menu
