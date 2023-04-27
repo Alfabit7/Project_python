@@ -43,23 +43,31 @@ def ShowAllNotion():
 
 
 def EditNotion():
-    dateID = requestDatetime()
-    userID = input(
-        '\n Введите ID заметки, которую хотите отредактировать: ')
-    userTitle = input(
-        '\n Введите/(отредактируйте) заголовок заметки: ')
-    userMsg = input(
-        '\n Введите/(отредактируйте) сообщение заметки: ')
+    if len(myNote) > 0:
+        dateID = requestDatetime()
+        userID = input(
+            '\n Введите ID заметки, которую хотите отредактировать: ')
+        if userID in myNote:
+            userTitle = input(
+                '\n Введите/(отредактируйте) заголовок заметки: ')
+            userMsg = input(
+                '\n Введите/(отредактируйте) сообщение заметки: ')
 
-    myNote[userID][1] = userTitle
-    myNote[userID][2] = userMsg
-    # добавляем\ else - меняем дату редактирования заметки
-    if len(myNote[userID]) == 3:
-        myNote[userID].append(dateID[1])
+            myNote[userID][1] = userTitle
+            myNote[userID][2] = userMsg
+            # добавляем\ else - меняем дату редактирования заметки
+            if len(myNote[userID]) == 3:
+                myNote[userID].append(dateID[1])
+            else:
+                myNote[userID][3] = dateID[1]
+            print(
+                f'\nЗаметка c id {userID} отредактированна {dateID[1]} ')
+        else:
+            print(
+                f'\n Заметки с ID {userID} в списке нет проверьте правильность ввода ID')
     else:
-        myNote[userID][3] = dateID[1]
-    print(
-        f'\nЗаметка c id {userID} отредактированна {dateID[1]} ')
+        print(
+            'Список заметок пуст редактировать нечего')
 
 # функция удаления заметок
 
