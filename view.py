@@ -1,21 +1,4 @@
 import notion
-# def ShowMenu():
-#     while True:
-#         print('Added note: \n')
-#         menu = int(input(menu))
-#         try:
-#             menu = int(menu)
-#         except ValueError:
-#             if menu != '':
-#                 print('\n Введите пункт меню цифрами!')
-#             else:
-#                 break
-#             continue
-#         if 0 > menu >= 3:
-#             continue
-#         else:
-#             print('\n Диаппазон меню от 1 до 2')
-#     return menu
 
 
 def ShowMenu():
