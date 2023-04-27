@@ -1,6 +1,7 @@
 #  Словарь myNote Хранит заметки пользователя
+import csv
 import datetime
-# myNote = {id: [date, title, msg, editDate}]}
+# myNote = {id: [id date, title, msg, editDate}]}
 myNote = dict()
 
 
@@ -52,9 +53,14 @@ def EditNotion():
                 '\n Введите/(отредактируйте) заголовок заметки: ')
             userMsg = input(
                 '\n Введите/(отредактируйте) сообщение заметки: ')
-
-            myNote[userID][1] = userTitle
-            myNote[userID][2] = userMsg
+            if userTitle == '':
+                return
+            else:
+                myNote[userID][1] = userTitle
+            if userMsg == '':
+                return
+            else:
+                myNote[userID][2] = userMsg
             # добавляем\ else - меняем дату редактирования заметки
             if len(myNote[userID]) == 3:
                 myNote[userID].append(dateID[1])
@@ -69,8 +75,8 @@ def EditNotion():
         print(
             '\n Список заметок пуст, редактировать нечего')
 
-# функция удаления заметок
 
+# функция удаления заметок
 
 def DeleteNotion():
     if len(myNote) > 0:
@@ -86,3 +92,13 @@ def DeleteNotion():
     else:
         print(
             '\n Список заметок пуст, удалять нечего')
+
+
+def SaveBase():
+    with open('myNote.csv', 'w', newline='', encoding='UTF-8-sig') as file:
+        writer = csv.writer(file, delimiter=';')
+        # Записываем заголовок
+        writer.writerow(['Number_id', 'Date', 'Title', 'Msg', 'EditDate'])
+        # Записываем данные
+        for number_id, data in myNote.items():
+            writer.writerow([number_id]+data)
