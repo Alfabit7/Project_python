@@ -26,7 +26,7 @@ def addNote():
     dateID = requestDatetime()
     addTitle = input("Введите название заметки: ")
     addMsg = input("Введите заметку: ")
-    myNote[dateID[0]] = [dateID[1], addTitle, addMsg]
+    myNote[dateID[0]] = [dateID[1], addTitle, addMsg, dateID[1]]
     # myNote[id]=[]
     print(
         f'\nЗаметка c id {dateID[0]} добавлена {currentDate}')
@@ -38,7 +38,8 @@ def ShowAllNotion():
     if len(myNote) == 0:
         print('\n Заметок нет')
     else:
-        print(myNote.items())
+        for id, data in myNote.items():
+            print(f" ID: {id} Notion: {data}")
 
 # функция редактирования заметки
 
@@ -102,3 +103,16 @@ def SaveBase():
         # Записываем данные
         for number_id, data in myNote.items():
             writer.writerow([number_id]+data)
+    print('Заметки сохранены в файл myNote.csv')
+
+
+def LoadBase():
+    with open('myNote.csv', newline='', encoding='UTF-8-sig') as file:
+        reader = csv.reader(file, delimiter=';')
+        next(reader)  # Пропускаем заголовок
+        for row in reader:
+            key = row[0]
+            data = [row[1], row[2], row[3], row[4]]
+            myNote[key] = data
+    print('\nЗагружен файл myNote.csv его содержимое:\n ')
+    ShowAllNotion()
