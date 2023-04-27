@@ -1,12 +1,36 @@
 #  Словарь myNote Хранит заметки пользователя
+import datetime
+# myNote = {id: [date, title, msg, editDate}]}
 myNote = dict()
 
 
+date = None
+currentDate = None
+id = None
+
+# Функция получения текущей даты ивремени и фомрирования ID сосотоящего из даты
+
+
+def requestDatetime():
+    date = datetime.datetime.now()
+    currentDate = date.strftime("%d-%b-%Y (%H:%M:%S)")
+    id = date.strftime("%d%m%Y%H%M%S%f")
+    dateAndId = [id, currentDate]
+    return dateAndId
+
+# функция добавления заметок
+
+
 def addNote():
+    dateID = requestDatetime()
     addTitle = input("Введите название заметки: ")
     addMsg = input("Введите заметку: ")
-    myNote[addTitle] = addMsg
-    print('\n Заметка добавлена')
+    myNote[dateID[0]] = [dateID[1], addTitle, addMsg]
+    # myNote[id]=[]
+    print(
+        f'\nЗаметка c id {dateID[0]} добавлена {currentDate}')
+
+# функция отображения всех заметок
 
 
 def ShowAllNotion():
@@ -15,18 +39,33 @@ def ShowAllNotion():
     else:
         print(myNote.items())
 
+# функция редактирования заметки
+
 
 def EditNotion():
-    userKeys = input(
-        '\n Введите заголовок заметки, которую хотите отредактировать: ')
+    dateID = requestDatetime()
+    userID = input(
+        '\n Введите ID заметки, которую хотите отредактировать: ')
+    userTitle = input(
+        '\n Введите/(отредактируйте) заголовок заметки: ')
     userMsg = input(
-        '\n Введите текст редактирования заметки: ')
-    myNote[userKeys] = userMsg
-    print('\n Заметка отредактированна')
+        '\n Введите/(отредактируйте) сообщение заметки: ')
+
+    myNote[userID][1] = userTitle
+    myNote[userID][2] = userMsg
+    # добавляем\ else - меняем дату редактирования заметки
+    if len(myNote[userID]) == 3:
+        myNote[userID].append(dateID[1])
+    else:
+        myNote[userID][3] = dateID[1]
+    print(
+        f'\nЗаметка c id {userID} отредактированна {dateID[1]} ')
+
+# функция удаления заметок
 
 
 def DeleteNotion():
     userKeys = input(
-        '\n Введите заголовок заметки, которую хотите удалить: ')
+        '\nВведите ID заметки, которую хотите удалить: ')
     myNote.pop(userKeys)
     print('\n Заметка удалена')
