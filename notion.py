@@ -117,3 +117,10 @@ def LoadBase():
             myNote[key] = data
     print('\nЗагружен файл myNote.csv его содержимое:\n ')
     ShowAllNotion()
+
+# Функция сортировки по дате el[1][0] сортирует по значению попервому элемента массива
+
+
+def SortedDate():
+    for i in sorted(myNote.items(), key=lambda el: el[1][0]):
+        print(i)
