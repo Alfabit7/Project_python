@@ -26,6 +26,7 @@ def addNote():
     dateID = requestDatetime()
     addTitle = input("Введите название заметки: ")
     addMsg = input("Введите заметку: ")
+    dateID[0] = dateID[0]+"id"
     myNote[dateID[0]] = [dateID[1], addTitle, addMsg, dateID[1]]
     # myNote[id]=[]
     print(
@@ -39,7 +40,7 @@ def ShowAllNotion():
         print('\n Заметок нет')
     else:
         for id, data in myNote.items():
-            print(f" ID: {id} Notion: {data}")
+            print(f" ID: {id}: {data}")
 
 # функция редактирования заметки
 
