@@ -17,6 +17,16 @@
 * Метод Загрузить данные из файла csv
 * Метод Сохранить заметки в файл csv
 * Метод Сортировки по дате
+#
+## Ипсользуемые материалы
+
+Метод сортировки 
+https://www.youtube.com/watch?v=h568KGjc0f0
+
+Метод даты времени https://pythonru.com/primery/kak-ispolzovat-modul-datetime-v-python
+
+Документация python  https://docs.python.org/3.10/tutorial/index.html
+
 
 
 
